@@ -55,6 +55,8 @@ html,body {
     float: left;
     list-style: none;
     margin-top: 10px;
+    width: 100%;
+
 }
 
 .main-nav2 {
