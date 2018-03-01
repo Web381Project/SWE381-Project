@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Cart</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/elegant-font/html-css/style.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header1">
+	
+     
+             <nav>
+                   <div class="row">
+                       <ul class="main-nav">
+
+                           <li><a href="home.html">Home</a></li>
+                            <li><a href="plasterSculptures.html">Plaster Sculptures</a></li>
+                           <li><a href="woodSculptures.html">Wood Sculptures</a></li>
+                           <li><a href="paintings.html">Paintings</a></li>
+                           
+                           
+                           <li style="float: right"><a href="index.html"><i class="fas fa-user"></i></a></li>
+                           <li style="float: right"><a href="cart.html"><i class="fas fa-shopping-basket"></i></a></li>
+
+                           <li style ="float: right"><div class="topnav">
+                          <div class="search-container">
+
+                          <form action="/action_page.php">
+                         <input type="text" placeholder="Search.." name="search">
+                        <i class="fa fa-search"></i>
+                          </form>
+                           </div>
+                          </li>
+                         </div>
+
+
+                       </ul>   
+                       
+                       
+              
+                     </div>
+
+                 </nav>
+        
+        
+        
+	</header>
+
+	<!-- Cart -->
+	<section class="cart bgwhite p-t-70 p-b-100">
+		<div class="container">
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					<table class="table-shopping-cart">
+						<tr class="table-head">
+							<th class="column-1"></th>
+							<th class="column-2">Product</th>
+							<th class="column-3">Price</th>
+							<th class="column-4 p-l-70">Quantity</th>
+							<th class="column-5">Total</th>
+						</tr>
+
+						<tr class="table-row">
+							<td class="column-1">
+								<div class="cart-img-product b-rad-4 o-f-hidden">
+									<img src="images/item-10.jpg" alt="IMG-PRODUCT">
+								</div>
+							</td>
+							<td class="column-2">Painting</td>
+							<td class="column-3">$36.00</td>
+							<td class="column-4">
+								<div class="flex-w bo5 of-hidden w-size17">
+									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+									</button>
+
+									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+
+									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+									</button>
+								</div>
+							</td>
+							<td class="column-5">$36.00</td>
+						</tr>
+
+						<tr class="table-row">
+							<td class="column-1">
+								<div class="cart-img-product b-rad-4 o-f-hidden">
+									<img src="images/item-05.jpg" alt="IMG-PRODUCT">
+								</div>
+							</td>
+							<td class="column-2">Wood Sculpture</td>
+							<td class="column-3">$16.00</td>
+							<td class="column-4">
+								<div class="flex-w bo5 of-hidden w-size17">
+									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+									</button>
+
+									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
+
+									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+									</button>
+								</div>
+							</td>
+							<td class="column-5">$16.00</td>
+						</tr>
+					</table>
+                    
+                    
+                    				<div class="size15 trans-0-4">
+					<!-- Button -->
+				<a href="shippingInfo.html" >	<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+						Proceed to Checkout
+                    </button></a>
+				</div>
+                    
+                    
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+ <!--Footer-->
+ <footer>
+
+     <div class="container">
+       <div class="row">
+       <center>
+           <p>A lovely gate to the Mecca of fine arts</p>
+              <p>BORN IN KSU - 2018</p>
+   </center>
+               </div>
+           </div> 
+     
+    </footer>
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection -->
+	<div id="dropDownSelect1"></div>
+	<div id="dropDownSelect2"></div>
+
+
+</body>
+</html>
