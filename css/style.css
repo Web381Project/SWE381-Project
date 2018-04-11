@@ -60,11 +60,19 @@ html,body {
 }
 
 .row {
-    max-width: 1140px;
-    margin: 0 auto 0 auto;
-    margin-right: 30px;
+    max-width: 100%;
 }
 
+.form {
+    margin-left: 10%;
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+
+.form input{
+    margin-top: 10px;
+
+}
 /* -----------------------------------*/
 /* ----------Main Navigation----------*/
 /* -----------------------------------*/
@@ -78,19 +86,6 @@ html,body {
 
 }
 
-.main-nav2 {
-
-    float: right;
-    list-style: none;
-    margin-top: 10px;
-}
-
-.main-nav2 li { /* select all li elemnts inside it */
-
-    display: inline-block;
-    margin-left: 50px;
-
-} 
 
 .main-nav li { /* select all li elemnts inside it */
 
