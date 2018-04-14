@@ -1,12 +1,15 @@
+<?php
+require_once('core/init.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    	<!-- changggggggggged -->
-	<title>Cart</title>
+
+    <title>Cart</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-    
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>   
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -20,34 +23,7 @@
 
 	<!-- Header -->
 	<header class="header1">
-     
-             <nav>
-                   <div class="row">
-                       <ul class="main-nav">
-
-                           <li><a href="home.html">Home</a></li>
-                            <li><a href="plasterSculptures.html">Plaster Sculptures</a></li>
-                           <li><a href="woodSculptures.html">Wood Sculptures</a></li>
-                           <li><a href="paintings.html">Paintings</a></li>
-                                  
-                           <li style="float: right"><a href="index.html"><i class="fas fa-user"></i></a></li>
-                           <li style="float: right"><a href="cart.html"><i class="fas fa-shopping-basket"></i></a></li>
-
-                     <li style="float: right">     
-                        <div class="topnav">
-                          <div class="search-container">
-
-                          <form action="/action_page.php">
-                         <input type="text" placeholder="Search.." name="search">
-                        <i class="fa fa-search"></i>
-                          </form>
-                           </div>
-                          </li>
-                         </div>
-                       </ul>                  
-        
-                 </nav>    
-        
+         <?php include 'includes/navigation.php'; ?>       
 	</header>
 
 	<!-- Cart -->
@@ -133,13 +109,8 @@
     </section>
 
  <!--Footer-->
- <footer>
+<?php include 'includes/footer.php' ?>
 
-     <div class="container">
-           <p>A lovely gate to the Mecca of fine arts<br>BORN IN KSU - 2018</p>
-           </div> 
-     
-    </footer>
 
 
 </body>

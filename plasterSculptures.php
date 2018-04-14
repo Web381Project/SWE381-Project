@@ -1,8 +1,11 @@
+<?php
+require_once('core/init.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Paintings</title>
-    
+	<title>Plaster Sculptures</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -15,48 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
     
 <!--===============================================================================================-->
-    
 </head>
 <body class="animsition">
 
 	<!-- Header -->
 	<header class="pageHeader">
 		<!-- Header desktop -->
-	       <nav>
-                   <div class="row">
-                       <ul class="main-nav">
-
-                           <li><a href="home.html">Home</a></li>
-                            <li><a href="plasterSculptures.html">Plaster Sculptures</a></li>
-                           <li><a href="woodSculptures.html">Wood Sculptures</a></li>
-                           <li><a href="paintings.html">Paintings</a></li>
-                           
-                           
-                           <li style="float: right"><a href="index.html"><i class="fas fa-user"></i></a></li>
-                           <li style="float: right"><a href="cart.html"><i class="fas fa-shopping-basket"></i></a></li>
-
-                           <li style ="float: right">
-                               <div class="topnav">
-                          <div class="search-container">
-
-                          <form action="/action_page.php">
-                         <input type="text" placeholder="Search.." name="search">
-                        <i class="fa fa-search"></i>
-                          </form>
-                           </div>
-                          </li>
-                         </div>
-
-
-                       </ul>   
-                       
-                       
-              
-                     </div>
-
-                 </nav>
-        
-      
+	   <?php include 'includes/navigation.php'; ?>   
 	</header>
 
 
@@ -138,7 +106,7 @@
 
 								<div class="block2-txt p-t-20">
 									<a href="product.html" class="block2-name dis-block s-text3 p-b-5">
-										Paintings
+										Plaster Sculptures
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
@@ -171,7 +139,7 @@
 
 								<div class="block2-txt p-t-20">
 									<a href="product.html" class="block2-name dis-block s-text3 p-b-5">
-										Paintings
+										Plaster Sculptures
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
@@ -196,7 +164,7 @@
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Paintings
+												Plaster Sculptures
 											</button>
 										</div>
 									</div>
@@ -204,7 +172,7 @@
 
 								<div class="block2-txt p-t-20">
 									<a href="product.html" class="block2-name dis-block s-text3 p-b-5">
-										Paintings
+										Plaster Sculptures
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
@@ -239,7 +207,7 @@
 
 								<div class="block2-txt p-t-20">
 									<a href="product.html" class="block2-name dis-block s-text3 p-b-5">
-										Paintings
+										Plaster Sculptures
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
@@ -257,18 +225,8 @@
 
 
  <!--Footer-->
- <footer>
+<?php include 'includes/footer.php' ?>
 
-     <div class="container">
-       <div class="row">
-       <center>
-           <p>A lovely gate to the Mecca of fine arts</p>
-              <p>BORN IN KSU - 2018</p>
-   </center>
-               </div>
-           </div> 
-     
-    </footer>
 
 
 

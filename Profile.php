@@ -1,4 +1,8 @@
-﻿<html>
+﻿<?php
+require_once('core/init.php');
+?>
+
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -32,41 +36,7 @@
     <!-- NAVBAR CODE END -->
 <header class="pageHeader">
 		<!-- Header desktop -->
-	       <nav>
-                   <div class="row">
-                       <ul class="main-nav">
-
-                           <li><a href="home.html">Home</a></li>
-                            <li><a href="plasterSculptures.html">Plaster Sculptures</a></li>
-                           <li><a href="woodSculptures.html">Wood Sculptures</a></li>
-                           <li><a href="paintings.html">Paintings</a></li>
-                           
-                           
-                           <li style="float: right"><a href="index.html"><i class="fas fa-user"></i></a></li>
-                           <li style="float: right"><a href="cart.html"><i class="fas fa-shopping-basket"></i></a></li>
-
-                           <li style ="float: right">
-                               <div class="topnav">
-                          <div class="search-container">
-
-                          <form action="/action_page.php">
-                         <input type="text" placeholder="Search.." name="search">
-                        <i class="fa fa-search"></i>
-                          </form>
-                           </div>
-                          </li>
-                         </div>
-
-
-                       </ul>   
-                       
-                       
-              
-                     </div>
-
-                 </nav>
-        
-      
+	            <?php include 'includes/navigation.php'; ?>     
 	</header>
     
     
@@ -129,6 +99,10 @@
 
     <!-- REQUIRED SCRIPTS FILES -->
     <!-- CORE JQUERY FILE -->
+    
+    <?php include 'includes/footer.php' ?>
+
+    
     <script src="assets/js/jquery-1.11.1.js"></script>
     <!-- REQUIRED BOOTSTRAP SCRIPTS -->
     <script src="assets/js/bootstrap.js"></script>

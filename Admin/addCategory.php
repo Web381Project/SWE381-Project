@@ -4,14 +4,29 @@
 	<title>Wood Sculptures</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
    
 <!--===============================================================================================-->
+       <script language="JavaScript"
+                      type="text/javascript">
+<!--
+                //validate the entry form
+                function checkForm()
+                {
+                if(categoryform.cat_name.value.length == 0)
+                {
+                        alert("Please enter a Category Name");
+                        return false;
+                }
+                }
+                // -->
+                </script>
+    
 </head>
 <body class="animsition">
 
@@ -24,7 +39,7 @@
 
 
                            <li><a href="home.html">Home</a></li>
-                            <li><a href="plasterSculptures.html">Plaster Sculptures</a></li>
+                           <li><a href="plasterSculptures.html">Plaster Sculptures</a></li>
                            <li><a href="woodSculptures.html">Wood Sculptures</a></li>
                            <li><a href="paintings.html">Paintings</a></li>
                            <li><a href="addProduct.html">New Product</a></li>
@@ -59,19 +74,25 @@
 	</header>
 
     
+    <div class="form">
+  <form name="categoryform"
+                      action="add-cat.php"
+                      method="get"
+                      onsubmit="return checkForm()"
+                      id="categoryform">
+         <table>
+                <tr>
+                    <td>Category name:</td>
+                     <td><input type="text" name="newCategory"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add"></td>
+                </tr>
+                    </table>
+</form>
     
-  	                            <div class="form">
-				                    <form>
-				                    		Category name
-				                        	<input type="text" name="form-first-name" placeholder="Category name" class="form-first-name form-control" id="form-first-name">
-				                        	number of products
-				                        	<input type="text" name="form-last-name" placeholder="number of products" class="form-last-name form-control" id="form-last-name">			                        
-				                        <a href="#"><button class="btn">Add Catogery</button></a>
-				                    </form>
-			                    </div>  
-    
-    
-    
+    </div>
     
 
  <!--Footer-->

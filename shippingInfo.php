@@ -1,3 +1,7 @@
+<?php
+require_once('core/init.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,42 +83,8 @@ table.blueTable tfoot .links a{
 
 	<!-- Header -->
 	<header class="header1">
-	
-     
-             <nav>
-                   <div class="row">
-                       <ul class="main-nav">
 
-                           <li><a href="home.html">Home</a></li>
-                            <li><a href="plasterSculptures.html">Plaster Sculptures</a></li>
-                           <li><a href="woodSculptures.html">Wood Sculptures</a></li>
-                           <li><a href="paintings.html">Paintings</a></li>
-                           
-                           
-                           <li style="float: right"><a href="index.html"><i class="fas fa-user"></i></a></li>
-                           <li style="float: right"><a href="cart.html"><i class="fas fa-shopping-basket"></i></a></li>
-
-                           <li style ="float: right"><div class="topnav">
-                          <div class="search-container">
-
-                          <form action="/action_page.php">
-                         <input type="text" placeholder="Search.." name="search">
-                        <i class="fa fa-search"></i>
-                          </form>
-                           </div>
-                          </li>
-                         </div>
-
-
-                       </ul>   
-                       
-                       
-              
-                     </div>
-
-                 </nav>
-        
-        
+       <?php include 'includes/navigation.php'; ?>   
         
 	</header>
 
@@ -195,18 +165,8 @@ table.blueTable tfoot .links a{
 
 
  <!--Footer-->
- <footer>
+<?php include 'includes/footer.php' ?>
 
-     <div class="container">
-       <div class="row">
-       <center>
-           <p>A lovely gate to the Mecca of fine arts</p>
-              <p>BORN IN KSU - 2018 ©</p>
-   </center>
-               </div>
-           </div> 
-     
-    </footer>
 
 
 
