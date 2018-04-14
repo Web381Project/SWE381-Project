@@ -11,21 +11,6 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
    
-<!--===============================================================================================-->
-       <script language="JavaScript"
-                      type="text/javascript">
-<!--
-                //validate the entry form
-                function checkForm()
-                {
-                if(categoryform.cat_name.value.length == 0)
-                {
-                        alert("Please enter a Category Name");
-                        return false;
-                }
-                }
-                // -->
-                </script>
     
 </head>
 <body class="animsition">
@@ -75,11 +60,7 @@
 
     
     <div class="form">
-  <form name="categoryform"
-                      action="add-cat.php"
-                      method="get"
-                      onsubmit="return checkForm()"
-                      id="categoryform">
+  <form name="categoryform" action="add-cat.php" method="GET" id="categoryform">
          <table>
                 <tr>
                     <td>Category name:</td>
