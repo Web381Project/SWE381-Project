@@ -19,8 +19,8 @@ $result = $db->query($sql);
                            
                            <!-------- i linked the register page her---> 
                            
-                           <li style="float: right"><a href="index.html"><i class="fas fa-user"></i></a></li>                 
-                           <li style="float: right"><a href="cart.html"><i class="fas fa-shopping-basket"></i></a></li>
+                           <li style="float: right"><a href="signin.html"><i class="fas fa-user"></i></a></li>                 
+                           <li style="float: right"><a href="cart.php"><i class="fas fa-shopping-basket"></i></a></li>
 
                            <li style ="float: right"><div class="topnav">
                           <div class="search-container">
