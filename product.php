@@ -9,42 +9,28 @@ include('comments.php')
 	<title>Product Detail</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
+
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+     
 <!--===============================================================================================-->
 </head>
+    
+    
 <body class="animsition">
 
 	<!-- Header -->
-	<header class="header1">
+	<header class="pageHeader">
 
-        <?php include 'includes/navigation.php'; ?>
+	   <?php include 'includes/navigation.php'; ?>   
         
 	</header>
-	<!-- breadcrumb -->
-	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
-		<a href="index.html" class="s-text16">
-			Home
-			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
-		</a>
 
-		<a href="product.html" class="s-text16">
-			Paintings
-			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
-		</a>
-
-
-		<span class="s-text17">
-			Painting
-		</span>
-	</div>
 
 	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80">
@@ -118,6 +104,8 @@ include('comments.php')
 
     <?php
     
+   echo "<div class='comment-form'>";
+    
     echo "<form method='POST' action='".setComments($db)."'>
          <input type='hidden' name='userID' value='Anonymous'>
          <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
@@ -126,6 +114,8 @@ include('comments.php')
          </form>";
     
      getComments($db);
+    
+    echo "</div>";
     
     ?>
 

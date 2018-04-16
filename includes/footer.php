@@ -6,5 +6,5 @@
               <p>BORN IN KSU - 2018</p>
    </center>
                </div>
-     
-    </footer>
+ 
+</footer>

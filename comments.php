@@ -1,3 +1,4 @@
+
 <?php
     
     function setComments($db) {
@@ -17,10 +18,25 @@ function getComments($db){
     while($row = mysqli_fetch_assoc($result)){
         echo "<div class='comment-box'><p>";
         echo $row['userID']."<br>";
-        echo $row['date']."<br>";
+        echo $row['date']."<br><br>";
         echo nl2br($row['comment'])."<br>";
-        echo "</p></div>";
+        echo "</p>
+            <form class='flag-form' method='POST' action='".flagComment($db)."'>
+            <input type='hidden' name='commentID' value='".$row['commentID']."'>
+            <button type='submit' name='commentFlag'><i class='fa fa-flag'></i></button>
+            </form>
         
+        </div>";
+        
+    }
+}
+
+function flagComment($db){
+    if(isset($_POST['commentFlag'])){
+        $commentID = $_POST['commentID'];
+        
+        $sql ="UPDATE Comments SET flagged=1 WHERE commentID='$commentID'";
+        $result = $db->query($sql);
     }
 }
 
