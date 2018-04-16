@@ -1,5 +1,6 @@
 <?php
 require_once('core/init.php');
+include('comments.php')
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +15,8 @@ require_once('core/init.php');
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     
 <!--===============================================================================================-->
 </head>
@@ -115,43 +116,31 @@ require_once('core/init.php');
 		</div>
 	</div>
 
+    <?php
+    
+    echo "<form method='POST' action='".setComments($db)."'>
+         <input type='hidden' name='userID' value='Anonymous'>
+         <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+         <textarea name='comment'></textarea><br>
+         <button type='submit' name='commentSubmit'>Comment</button>
+         </form>";
+    
+     getComments($db);
+    
+    ?>
 
    
   
+<!--
   <div class="detailBox">
     <div class="titleBox">
       <label>Comment Box</label>
-        <button type="button" class="close" aria-hidden="true">&times;</button>
-    </div>
-    <div class="commentBox">
-        
-        <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
     </div>
     <div class="actionBox">
         <ul class="commentList">
             <li>
-                <div class="commenterImage">
-                  <img src="http://placekitten.com/50/50" />
-                </div>
                 <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span><span><i class="fas fa-flag"></i></span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://placekitten.com/45/45" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p><span class="date sub-text">on March 5th, 2014</span><span><i class="fas fa-flag"></i></span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://placekitten.com/40/40" />
-                </div>
-                <div class="commentText">
+                    <p>Name</p>
                     <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span><span><i class="fas fa-flag"></i></span>
 
                 </div>
@@ -167,6 +156,7 @@ require_once('core/init.php');
         </form>
     </div>
 </div>  
+-->
     
 
  <!--Footer-->

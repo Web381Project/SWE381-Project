@@ -1,5 +1,8 @@
 <?php
 require_once('core/init.php');
+$sql ="SELECT * FROM products WHERE featured = 1";
+$featured = $db->query($sql);
+
 ?>
 
 <html lang="en"> <!--Language-->
@@ -17,6 +20,9 @@ require_once('core/init.php');
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
         
          <title>Mondo Dell'arte</title>
@@ -36,31 +42,18 @@ require_once('core/init.php');
       
     </header>    
  
-    
-  <div class="container">
+<div class="container">
   <h2>Carousel Example</h2>  
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
 
     <!-- Wrapper for slides -->
+      <?php foreach($featured as $product) { ?>
     <div class="carousel-inner">
       <div class="item active">
-        <img src="la.jpg" alt="Los Angeles" style="width:100%;">
+        <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" style="width:100%;">
       </div>
+        <?php } ?>
 
-      <div class="item">
-        <img src="chicago.jpg" alt="Chicago" style="width:100%;">
-      </div>
-    
-      <div class="item">
-        <img src="ny.jpg" alt="New york" style="width:100%;">
-      </div>
-    </div>
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -72,10 +65,10 @@ require_once('core/init.php');
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>  
+</div>
     
-    
-    
+ 
+        </div>
  <!--Footer-->
 <?php include 'includes/footer.php' ?>
     
