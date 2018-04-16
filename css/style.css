@@ -156,3 +156,21 @@ footer{
     font-weight:700;
     font-size:30px;
 }
+
+/* Comment section */
+
+.comment-box {
+    width: 845px;
+    padding: 20px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+}
+
+.comment-box p {
+  font-family: 'Lato';
+    font-size: 14px;
+    line-height: 16px;
+    color: black;
+    
+}

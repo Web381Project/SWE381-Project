@@ -12,13 +12,14 @@
 }
 
 function getComments($db){
-    $sql = "SELECT * FROM Comments";
+    $sql = "SELECT * FROM Comments order by date DESC";
     $result = $db->query($sql);
     while($row = mysqli_fetch_assoc($result)){
+        echo "<div class='comment-box'><p>";
         echo $row['userID']."<br>";
         echo $row['date']."<br>";
-        echo $row['comment']."<br>";
-       
+        echo nl2br($row['comment'])."<br>";
+        echo "</p></div>";
         
     }
 }
