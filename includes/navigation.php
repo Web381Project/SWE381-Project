@@ -1,21 +1,26 @@
 <?php
     
-$sql = "SELECT * FROM categories";
-$result = $db->query($sql);
+require_once('core/init.php');
+
+ $cats = "SELECT * FROM Categories";
+    $result = $db->query($cats);
 
 ?>
-
     
 <nav>
-                   <div class="row">
-                       <ul class="main-nav">
+     <div class="row">
+        <ul class="main-nav">
+                           
+        <li><a href="Home.php">Home</a></li>
 
+
+        <?php
+        while($row = mysqli_fetch_assoc($result)){
+        ?>
+
+        <li><a href="paintings.php"><?php echo $row['category']?></a></li>
                            
-                           <li><a href="Home.php"></a></li>
-                           
-                           <li><a href="plasterSculptures.php">Plaster Sculptures</a></li>
-                           <li><a href="woodSculptures.php">Wood Sculptures</a></li>
-                           <li><a href="paintings.php">Paintings</a></li>
+        <?php } ?>
                            
                            <!-------- i linked the register page her---> 
                            
