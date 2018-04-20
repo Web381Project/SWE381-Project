@@ -36,7 +36,7 @@ session_start();
 
 <?php 
 
-$user_id =1;
+$user_id =$_SESSION["ID"];
 //$con = mysqli_connect('localhost','root','','Mondo');
 $orders_list ="SELECT * FROM ORDERS WHERE ID='$user_id'";
 $query = mysqli_query($db,$orders_list);
@@ -74,12 +74,12 @@ while ($row=mysqli_fetch_array($query)) {
 							<td class="column-3"><?php echo $row["deliveryAddress"]; ?></td>
 							<td class="column-4"><?php echo $row["status"]; ?></td>
 							<td class="column-5"><?php echo $row["total"]; ?></td>
-							<?php if($row['status']!="Shipped" || $row['status']!="Delivered") {
+								<?php if($row['status']!="Shipped" && $row['status']!="Delivered") {
 							 ?>
-							 <td class="column-6">  </td><?php 
+							 <td class="column-6"> <a href="OrderItem.php?orderNo=<?php echo $row['orderNo']; ?>"> Return </td> <?php 
 							}?>
 							<?php if($row["status"]=='Shipped' || $row["status"]=='Delivered') { ?>
-							<td class="column-6"> <a href="OrderItem.php?orderNo=<?php echo $row['orderNo']; ?>"> Return </td> <?php 
+							<td class="column-6"></td><?php 
 							}?>
 						</tr>
 				
