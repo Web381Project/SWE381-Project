@@ -1,3 +1,8 @@
+<?php
+require_once('../core/init.php');
+include('../functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,6 +65,10 @@
 
     
     <div class="form">
+        
+          <p style="font-size: 34px; margin-top:10%;"> Add Category: </p>  
+  
+        
   <form name="categoryform" action="add-cat.php" method="GET" id="categoryform">
          <table>
                 <tr>
@@ -72,23 +81,17 @@
                 </tr>
                     </table>
 </form>
-    
+  
+    <p style="font-size: 34px; margin-top:5%;"> Categories: </p> 
+
+     <?php printCategories($db); ?>      
+        
     </div>
     
 
  <!--Footer-->
- <footer>
+<?php include '../includes/footer.php' ?>
 
-     <div class="container">
-       <div class="row">
-       <center>
-           <p>A lovely gate to the Mecca of fine arts</p>
-              <p>BORN IN KSU - 2018</p>
-   </center>
-               </div>
-           </div> 
-     
-    </footer>
 
 
 
