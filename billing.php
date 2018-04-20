@@ -36,17 +36,13 @@ session_start();
 
 <?php 
 
-$user_id =$_SESSION["ID"];;
+$user_id =1;
+//$con = mysqli_connect('localhost','root','','Mondo');
 $orders_list ="SELECT * FROM ORDERS WHERE ID='$user_id'";
 $query = mysqli_query($db,$orders_list);
-if (mysqli_num_rows($query) > 0) {
-while ($row=mysqli_fetch_array($query)) {
-?>
-	<div class="cart bgwhite p-t-70 p-b-100" style="margin-bottom: 0%">
-		<div class="container">
+if (mysqli_num_rows($query) > 0) { ?>
+	<div class="container">
 			<!-- Cart item -->
-			<div class="container-table-cart pos-relative">
-				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
 						<tr class="table-head">
 							
@@ -55,27 +51,45 @@ while ($row=mysqli_fetch_array($query)) {
 							<th class="column-3">Address</th>
 							<th class="column-4">Status</th>
 							<th class="column-5">Total</th>
+					
 							
 						</tr>
+				
+					</table>
+
+        
+    </div>
+   
+
+<?php
+while ($row=mysqli_fetch_array($query)) {
+?>
+		<div class="container">
+			<!-- Cart item -->
+					<table class="table-shopping-cart">
 						
 		<tr class="table-row">
-							<td class="column-1"><?php echo $row["orderNo"]; ?></td>
+							<td class="column-1"><a href="OrderItem.php?orderNo=<?php echo $row['orderNo']; ?>"><?php echo $row["orderNo"]; ?></td>
 							<td class="column-2"><?php echo $row["shippedDate"]; ?></td>
 							<td class="column-3"><?php echo $row["deliveryAddress"]; ?></td>
 							<td class="column-4"><?php echo $row["status"]; ?></td>
 							<td class="column-5"><?php echo $row["total"]; ?></td>
+							<?php if($row['status']!="Shipped" || $row['status']!="Delivered") {
+							 ?>
+							 <td class="column-6">  </td><?php 
+							}?>
+							<?php if($row["status"]=='Shipped' || $row["status"]=='Delivered') { ?>
+							<td class="column-6"> <a href="OrderItem.php?orderNo=<?php echo $row['orderNo']; ?>"> Return </td> <?php 
+							}?>
 						</tr>
 				
 					</table>
                     
                     
                     
-				</div>        
-			</div>
             
          
                 
-        </div>
         
         
         
@@ -89,6 +103,7 @@ while ($row=mysqli_fetch_array($query)) {
 
  <!--Footer-->
 <?php include 'includes/footer.php' ?>
+
 
 
 
