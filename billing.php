@@ -37,9 +37,8 @@ session_start();
 <?php 
 
 $user_id =$_SESSION["ID"];;
-$con = mysqli_connect('localhost','root','','Mondo');
 $orders_list ="SELECT * FROM ORDERS WHERE ID='$user_id'";
-$query = mysqli_query($con,$orders_list);
+$query = mysqli_query($db,$orders_list);
 if (mysqli_num_rows($query) > 0) {
 while ($row=mysqli_fetch_array($query)) {
 ?>
