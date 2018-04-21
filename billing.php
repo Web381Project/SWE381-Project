@@ -51,8 +51,8 @@ if (mysqli_num_rows($query) > 0) { ?>
 							<th class="column-3">Address</th>
 							<th class="column-4">Status</th>
 							<th class="column-5">Total</th>
-					
-							
+					 <th class="column-6" style="color:white">Reetturnnnn </th>
+					 <th class="column-7" style="color:white">Reettunnn </th>		
 						</tr>
 				
 					</table>
@@ -80,6 +80,7 @@ while ($row=mysqli_fetch_array($query)) {
 							<?php if($row["status"]=='Shipped' || $row["status"]=='Delivered') { ?>
 							<th class="column-6" style="color:white">Reetturnnnn </th><?php 
 							}?>
+							<td class="column-7"> <a href="Tracking.php?status=<?php echo $row['status']."&&orderNo=".$row['orderNo']."&&shippedDate=".$row["shippedDate"]."&&deliveryAddress=".$row['deliveryAddress']; ?> "><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1"> Tracking </button> </td>
 						</tr>
 				
 					</table>
