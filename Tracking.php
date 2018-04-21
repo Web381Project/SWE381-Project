@@ -126,7 +126,7 @@ require_once('core/init.php');
 							
 							<th class="column-1">OrderID</th>
 							<th class="column-2">Status</th>
-							<th class="column-3">Date</th>
+							<th class="column-3">shipped Date</th>
 							<th class="column-4">Delivery Address</th>
 						</tr>
 				
