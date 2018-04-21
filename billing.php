@@ -74,12 +74,11 @@ while ($row=mysqli_fetch_array($query)) {
 							<td class="column-3"><?php echo $row["deliveryAddress"]; ?></td>
 							<td class="column-4"><?php echo $row["status"]; ?></td>
 							<td class="column-5"><?php echo $row["total"]; ?></td>
-								<?php if($row['status']!="Shipped" && $row['status']!="Delivered") {
-							 ?>
-							 <td class="column-6"> <a href="OrderItem.php?orderNo=<?php echo $row['orderNo']; ?>"> Return </td> <?php 
+								<?php if($row['status']=="Ordered" || $row['status']=="Processed") {?>
+							 <td class="column-6"> <a href="Return.php?orderNo=<?php echo $row['orderNo']; ?> " onclick="return  confirm('Are you sue do you want to return this order?')"><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1"> Return</button> </td> <?php 
 							}?>
 							<?php if($row["status"]=='Shipped' || $row["status"]=='Delivered') { ?>
-							<td class="column-6"></td><?php 
+							<th class="column-6" style="color:white">Reetturnnnn </th><?php 
 							}?>
 						</tr>
 				
@@ -95,10 +94,7 @@ while ($row=mysqli_fetch_array($query)) {
         
     </div>
    
-		<?php
-								}
-							}
-						?>
+		<?php }}?>
 
 
  <!--Footer-->
