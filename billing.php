@@ -47,7 +47,7 @@ if (mysqli_num_rows($query) > 0) { ?>
 						<tr class="table-head">
 							
 							<th class="column-1">OrderID</th>
-							<th class="column-2">Date</th>
+							<th class="column-2">shipped Date</th>
 							<th class="column-3">Address</th>
 							<th class="column-4">Status</th>
 							<th class="column-5">Total</th>
