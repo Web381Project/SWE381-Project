@@ -95,7 +95,24 @@ while ($row=mysqli_fetch_array($query)) {
         
     </div>
    
-		<?php }}?>
+		<?php }}
+		 else { ?>
+							<div class="cart bgwhite p-t-70 p-b-100" style="margin-bottom: 0%">
+		<div class="container">
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					<table class="table-shopping-cart">
+<tr class="table-head">
+<td class="column-1" style="padding-left: 450px;"> <?php echo	"No Orders"?></td>
+</tr>
+</table>
+</div>        
+</div>
+</div>
+        
+        	<?php
+								} ?>
 
 
  <!--Footer-->
