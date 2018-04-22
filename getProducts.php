@@ -29,8 +29,9 @@ if (mysqli_connect_errno()){
 
         }
 
-						while($row = $result->fetch_assoc()){
-							echo '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+							while($row = $result->fetch_assoc()){
+                            
+                            echo '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative">
@@ -52,13 +53,20 @@ if (mysqli_connect_errno()){
 								</div>
 
 								<div class="block2-txt p-t-20">
-									<a href="product.html" class="block2-name dis-block s-text3 p-b-5">
+									<a href="product.php?Q='.$row["id"].'" class="block2-name dis-block s-text3 p-b-5">
 										'. $row["title"].'
 									</a>
 
-									<span class="block2-price m-text6 p-r-5">
-										$ '. $row["price"].'
-									</span>
+									<span class="block2-price m-text6 p-r-5">';
+                                    
+                        if($row["disc"]>0){             
+                            echo '<strike>'. $row["price"].'$'.'</strike>'.($row["price"]-$row["price"]*$row["disc"].'$');
+                        } else {
+                            echo $row["price"].'$';
+                        }                
+                                    
+                                    
+				            echo '</span>
 								</div>
 							</div>
 						</div>';
