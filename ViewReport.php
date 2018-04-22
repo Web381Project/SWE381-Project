@@ -40,7 +40,7 @@ session_start();
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
 <tr class="table-head">
-<td class="column-1" style=style="padding-left: 440px; text-decoration: underline;> <?php echo	"Existing Products "?></td>
+<td class="column-1" style="padding-left: 440px; text-decoration: underline;"> <?php echo	"Existing Products "?></td>
 </tr>
 </table>
 </div>        
