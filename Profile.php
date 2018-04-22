@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once('core/init.php');
 
 session_start();
@@ -102,18 +102,26 @@ if (mysqli_query($db,$query)) {
 
 </fieldset>
     
-        <div class="form-group col-md-8" >
-                        
-             <br>
-            <button href="billing.html" class="btn btn-warning" style="background-color: silver ">Show Order History</button>
-
-     </div>  
+        
   </form>
-    
+    <div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
     <form method="post" action="signout.php">
     <button id="singlebutton" name="logOut" class="btn btn-primary">Sign out</button>
+ </div>
+</div>
 
    </form>
+ 
+ 
+        <div class="form-group col-md-8" >
+                        
+            <br>
+           <a href="billing.php"> <button name="updateProfile" class="btn btn-primary">Show Order History</button>
+
+     </div> 
+ 
  
 </div>
      
@@ -122,3 +130,4 @@ if (mysqli_query($db,$query)) {
 </body>
 
 </html>
+
