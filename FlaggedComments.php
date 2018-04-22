@@ -41,6 +41,13 @@ function commentDelete($db){
         
         $sql ="DELETE FROM Comments WHERE commentID='$commentID'";
         $result = $db->query($sql);
+        
+  if ($result) {
+   echo "<script>alert('Comment deleted')</script>";
+}
+ else {
+     echo "<script>alert('comment not deleted!')</script>";
+ }
     }
 }
 

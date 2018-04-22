@@ -37,10 +37,6 @@ session_start();
 <?php 
 if(isset($_GET['orderNo']))
     $order_No = $_GET['orderNo'];
-<<<<<<< HEAD
-=======
-
->>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73
 $orders_list ="SELECT * FROM orderItem WHERE orderNo='$order_No'";
 $query = mysqli_query($db,$orders_list);
 if (mysqli_num_rows($query) > 0) {
@@ -105,8 +101,4 @@ while ($row=mysqli_fetch_array($query)) {
 
 
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73

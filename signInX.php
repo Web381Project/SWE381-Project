@@ -17,7 +17,7 @@ if(mysqli_num_rows($result) == 1){
 		$_SESSION['Name'] = $row['Name'];
 		$_SESSION['Type']= $row['Type'];
 
-    echo "<script>alert('Logged In successfullu!')";
+    echo "<script>alert('Logged In successfullu!')</script>";
     header('Location:Home.php');
     
 } else {
