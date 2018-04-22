@@ -14,8 +14,7 @@ require_once('core/init.php');
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
     
@@ -34,7 +33,7 @@ require_once('core/init.php');
 
         <!-- Top content -->
                     
-                    <div class="row" style="margin-bottom: 10%; margin-top: 10%;">
+                    <div class="row2" >
                             <div class="form-box">
 	                        	<div class="form-top">
 	                        		<div class="form-top-left">
@@ -45,18 +44,18 @@ require_once('core/init.php');
 
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="login-form">
+				                    <form role="form" action="signInX.php" method="post" class="login-form">
 				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username">Username</label>
-				                        	<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
+<label class="sr-only" for="form-user">Username</label>
+<input type="text" name="form-user" placeholder="Username..." class="form-username form-control" required>
 				                        </div>
 				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password">Password</label>
-				                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+<label class="sr-only" for="form-password">Password</label>
+<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" required>
 				                        </div>
-         <a href="Profile.html" ><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1">Sign in!</button></a>
+         <button type="submit" name="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1">Sign in!</button>
                                         
-                                        <p>don't have an account?<a href="signup.html">Sign up</a> </p>
+                                        <p>don't have an account?<a href="signup.php">Sign up</a> </p>
 				                    
 				                    </form>
 			                    </div>

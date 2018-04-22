@@ -33,7 +33,7 @@ require_once('core/init.php');
 
         <!-- Top content -->
                         	
-                   <div class="row" style="margin-bottom: 10%; margin-top: 10%;">
+                   <div class="row2">
                             <div class="form-box">
 	                        	<div class="form-top">
 	                        		<div class="form-top-left">
@@ -43,23 +43,23 @@ require_once('core/init.php');
 
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="login-form">
+<form role="form" action="signUpX.php" method="post" class="login-form">
 				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username">Username</label>
-				                        	<input type="text" name="form-username" placeholder="Username" id="form-username">
+                                            <label class="sr-only" for="form-username">Username</label>
+                                            <input type="text" name="form-username" placeholder="Username" required>
 				                        </div>
 				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password">Password</label>
-				                        	<input type="password" name="form-password" placeholder="Password" id="form-password">
+                                            <label class="sr-only" for="form-password">Password</label>
+                                            <input type="password" name="form-password" placeholder="Password" required>
 				                        </div>
  				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password">Email</label>
-				                        	<input type="text"  placeholder="Email" id="form-email">
+                                            <label class="sr-only" for="form-password">Email</label>
+                                            <input type="text"  placeholder="Email" name="form-email" required>
 				                        </div>                                       
                                         
-         <a href="Profile.html" ><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1">Sign Up</button></a>
+         <button type="submit" style="width: 100px;" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1">Sign Up</button>
                                         				                    
-				                    </form>
+</form>
 			                    </div>
 		                    </div>
 		                

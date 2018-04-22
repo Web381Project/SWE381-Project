@@ -1,5 +1,6 @@
 <?php
 require_once('core/init.php');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -9,75 +10,17 @@ require_once('core/init.php');
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
-     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     
-    <style>
-table.blueTable {
-  border: 1px solid #9FA2A4;
-  background-color: #E6E6E6;
-  width: 100%;
-  text-align: left;
-  border-collapse: collapse;
-}
-table.blueTable td, table.blueTable th {
-  border: 1px solid #000000;
-  padding: 3px 2px;
-}
-table.blueTable tbody td {
-  font-size: 13px;
-}
-table.blueTable tr:nth-child(even) {
-  background: #E6E6E6;
-}
-table.blueTable td:nth-child(even) {
-  background: #E6E6E6;
-}
-table.blueTable thead {
-  background: #FAFFFE;
-  background: -moz-linear-gradient(top, #fbfffe 0%, #fafffe 66%, #FAFFFE 100%);
-  background: -webkit-linear-gradient(top, #fbfffe 0%, #fafffe 66%, #FAFFFE 100%);
-  background: linear-gradient(to bottom, #fbfffe 0%, #fafffe 66%, #FAFFFE 100%);
-  border-bottom: 2px solid #444444;
-}
-table.blueTable thead th {
-  font-size: 15px;
-  font-weight: bold;
-  color: #000000;
-  border-left: 2px solid #D0E4F5;
-}
-table.blueTable thead th:first-child {
-  border-left: none;
-}
-
-table.blueTable tfoot td {
-  font-size: 14px;
-}
-table.blueTable tfoot .links {
-  text-align: right;
-}
-table.blueTable tfoot .links a{
-  display: inline-block;
-  background: #1C6EA4;
-  color: #FFFFFF;
-  padding: 2px 8px;
-  border-radius: 5px;
-}
-</style>
-    
-                <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
-
 <!--===============================================================================================-->
+
+
 </head>
 <body class="animsition">
 
@@ -91,39 +34,89 @@ table.blueTable tfoot .links a{
 
 <!------ Include the above in your HEAD tag ---------->
 
+<?php 
+$user_id =$_SESSION["ID"];
+//$con = mysqli_connect('localhost','root','','Mondo');
+$orders_list ="SELECT * FROM ORDERS WHERE ID='$user_id'";
+$query = mysqli_query($db,$orders_list);
+if (mysqli_num_rows($query) > 0) { ?>
+	<div class="container">
+			<!-- Cart item -->
+					<table class="table-shopping-cart">
+						<tr class="table-head">
+							
+							<th class="column-1">OrderID</th>
+							<th class="column-2">shipped Date</th>
+							<th class="column-3">Address</th>
+							<th class="column-4">Status</th>
+							<th class="column-5">Total</th>
+					 <th class="column-6" style="color:white">Reetturnnnn </th>
+					 <th class="column-7" style="color:white">Reettunnn </th>		
+						</tr>
+				
+					</table>
 
-    	<table class="blueTable">
-<thead>
-<tr>
-<th>Order Number</th>
-<th>Status</th>
-<th>Action</th>
+        
+    </div>
+   
+
+<?php
+while ($row=mysqli_fetch_array($query)) {
+?>
+		<div class="container">
+			<!-- Cart item -->
+					<table class="table-shopping-cart">
+						
+		<tr class="table-row">
+							<td class="column-1"><a href="OrderItem.php?orderNo=<?php echo $row['orderNo']; ?>"><?php echo $row["orderNo"]; ?></td>
+							<td class="column-2"><?php echo $row["shippedDate"]; ?></td>
+							<td class="column-3"><?php echo $row["deliveryAddress"]; ?></td>
+							<td class="column-4"><?php echo $row["status"]; ?></td>
+							<td class="column-5"><?php echo $row["total"]; ?></td>
+								<?php if($row['status']=="Ordered" || $row['status']=="Processed") {?>
+							 <td class="column-6"> <a href="Return.php?orderNo=<?php echo $row['orderNo']; ?> " onclick="return  confirm('Are you sue do you want to return this order?')"><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1"> Return</button> </td> <?php 
+							}?>
+							<?php if($row["status"]=='Shipped' || $row["status"]=='Delivered') { ?>
+							<th class="column-6" style="color:white">Reetturnnnn </th><?php 
+							}?>
+							<td class="column-7"> <a href="Tracking.php?status=<?php echo $row['status']."&&orderNo=".$row['orderNo']."&&shippedDate=".$row["shippedDate"]."&&deliveryAddress=".$row['deliveryAddress']; ?> "><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1"> Tracking </button> </td>
+						</tr>
+				
+					</table>
+                    
+                    
+                    
+            
+         
+                
+        
+        
+        
+    </div>
+   
+		<?php }}
+		 else { ?>
+							<div class="cart bgwhite p-t-70 p-b-100" style="margin-bottom: 0%">
+		<div class="container">
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					<table class="table-shopping-cart">
+<tr class="table-head">
+<td class="column-1" style="padding-left: 450px;"> <?php echo	"No Orders"?></td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td>1-000223451132</td>
-<td>Shipped</td>
-<td>Track</td>
-</tr>
-<tr>
-<td>1-039481175833</td>
-<td>Dilvered</td>
-<td>No Action</td>
-</tr>
-<tr>
-<td>1-200001100456</td>
-<td>Processing</td>
-<td>Return &amp; Cancel</td>
-</tr>
-</tbody>
 </table>
-    
-
+</div>        
+</div>
+</div>
+        
+        	<?php
+								} ?>
 
 
  <!--Footer-->
 <?php include 'includes/footer.php' ?>
+
 
 
 

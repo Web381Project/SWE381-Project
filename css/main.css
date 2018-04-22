@@ -1,84 +1,4 @@
-/*------------------------------------------------------------------
-Project:  
-Version:  
-Last change:  
-Assigned to:  Le Xuan Bach
-Primary use:  Company
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[LAYOUT]
 
-* body
-  + Header / header
-  + Page Content / .page-content .name-page
-        + Section Layouts / section .name-section
-        ...
-  + Footer / footer
-
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[COLOR CODES]
-
-# Text Color      :  
-# Primary Color 01:  
-# Primary Color 02:   
-# Primary Color 03:  
-
-------------------------------------------------------------------*/
-/*------------------------------------------------------------------
-[TYPOGRAPHY]
-
-Body            : 16px/1.6 '', Arial, sans-serif;
-Title           : 18px/1.6 '', Arial, sans-serif;
-Paragrap        : 18px/1.6 '', Arial, sans-serif;
-Input, textarea : 14px/1.6 '', Arial, sans-serif;
--------------------------------------------------------------------*/
-
-
-
-/*[ FONT ]
-///////////////////////////////////////////////////////////
-*/
-
-@font-face {
-  font-family: Montserrat-Regular;
-  src: url('../fonts/montserrat/Montserrat-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Medium;
-  src: url('../fonts/montserrat/Montserrat-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Italic;
-  src: url('../fonts/montserrat/Montserrat-Italic.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Black;
-  src: url('../fonts/montserrat/Montserrat-Black.ttf'); 
-}
-
-@font-face {
-  font-family: Linearicons;
-  src: url('../fonts/Linearicons-Free-v1.0.0/WebFont/Linearicons-Free.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Black;
-  src: url('../fonts/poppins/Poppins-Black.ttf'); 
-}
 
 /*[ RESTYLE TAG ]
 ///////////////////////////////////////////////////////////
@@ -91,31 +11,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 body, html {
 	height: 100%;
-	font-family: Montserrat-Regular, sans-serif;
-  font-weight: 400;
-}
-
-/* ------------------------------------ */
-a {
-	font-family: Montserrat-Regular;
-  font-weight: 400;
-	font-size: 15px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-}
-
-a:focus {
-	outline: none !important;
-}
-
-a:hover {
-	text-decoration: none;
-	color: #e65540;
+	font-family: 'Lato', sans-serif;
 }
 
 /* ------------------------------------ */
@@ -124,7 +20,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Montserrat-Regular;
+	font-family: 'Lato', sans-serif;
 	font-size: 15px;
 	line-height: 1.7;
 	color: #888888;
@@ -144,23 +40,6 @@ input {
     max-width: 300px;
 }
 
-textarea {
-  outline: none;
-}
-
-/* textarea:focus, input:focus {
-  border-color: transparent !important;
-} */
-
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; }
-input:focus::-moz-placeholder { color:transparent; }
-input:focus:-ms-input-placeholder { color:transparent; }
-
-textarea:focus::-webkit-input-placeholder { color:transparent; }
-textarea:focus:-moz-placeholder { color:transparent; }
-textarea:focus::-moz-placeholder { color:transparent; }
-textarea:focus:-ms-input-placeholder { color:transparent; }
 
 /* ------------------------------------ */
 button {
@@ -359,7 +238,7 @@ iframe {
 /* in select */
 .select2-container .select2-selection--single .select2-selection__rendered {
   font-size: 13px;
-  font-family: Montserrat-Regular;
+  font-family:  'Lato', sans-serif;;
   line-height: 20px;
   color: #888888;
   padding-left: 0px ;
@@ -426,7 +305,7 @@ iframe {
 
 .select2-results__options {
   font-size: 13px;
-  font-family: Montserrat-Regular;
+  font-family: 'Lato', sans-serif;;
   color: #888888;
 }
 

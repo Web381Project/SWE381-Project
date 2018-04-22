@@ -1,6 +1,104 @@
 <?php
 require_once('core/init.php');
-include('comments.php')
+
+
+//
+//
+// GET RATING
+//
+//
+
+function UpdateProductRating($db){
+    
+    
+    
+}
+
+
+
+
+function getUserId($db){
+    
+    if(isset($_SESSION['ID'])){
+        
+        $id = $_SESSION['ID'];
+
+        
+    $getUser = "SELECT * FROM Users WHERE ID='$id'";
+    $Userresult = $db->query($getUser);  
+        
+        while($row = mysqli_fetch_assoc($Userresult)){
+            
+            $user = $row['Name'];
+
+         }
+        return $user;
+        
+    } else {
+        return "Anonymous";
+    }   
+    
+}
+
+function setComments($db) {
+  
+    $Pid= $_GET['Q'];
+   
+    
+    if(isset($_POST['commentSubmit'])) {
+        
+       // $productID = $_GET['$productID'];       
+        $userID = $_POST['userID'];
+        $date = $_POST['date'];
+        $comment = $_POST['comment'];
+
+        $sql = "INSERT INTO Comments (ID,date,comment,productID) VALUES ('$userID','$date','$comment','$Pid')";
+        $result = $db->query($sql);
+    }
+}
+
+function getComments($db){
+    
+    
+    $Pid= $_GET['Q'];  
+    
+    $sql = "SELECT * FROM Comments WHERE productID='$Pid' ORDER BY date DESC";
+    $result = $db->query($sql);
+    
+    if(!$result){
+        
+              echo 'no comments';
+  
+    } else {
+
+
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<div class='comment-box'><p>";
+        echo $row['ID']."<br>";
+        echo $row['date']."<br><br>";
+        echo nl2br($row['comment'])."<br>";
+        echo "</p>
+            <form class='flag-form' method='POST' action='".flagComment($db)."'>
+            <input type='hidden' name='commentID' value='".$row['commentID']."'>
+            <button type='submit' name='commentFlag'><i class='fa fa-flag'></i></button>
+            </form>
+        
+        </div>";
+    }
+    }
+    
+}
+
+function flagComment($db){
+    if(isset($_POST['commentFlag'])){
+        $commentID = $_POST['commentID'];
+        
+        $sql ="UPDATE Comments SET flagged=1 WHERE commentID='$commentID'";
+        $result = $db->query($sql);
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -9,10 +107,9 @@ include('comments.php')
 	<title>Product Detail</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -31,6 +128,7 @@ include('comments.php')
         
 	</header>
 
+    
 
 	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80">
@@ -42,7 +140,16 @@ include('comments.php')
 					<div class="slick3">
 						<div class="item-slick3" data-thumb="images/thumb-item-01.jpg">
 							<div class="wrap-pic-w">
-								<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+								<?php 
+                                $Pid= $_GET['Q'];
+                                 $proinfo = mysqli_query($db,"SELECT * FROM Products WHERE id='$Pid'");
+                                    
+                                
+                                while($row = $proinfo->fetch_assoc()){
+    
+                                
+                                echo '<img src="'. $row['image'].'" alt="'. $row['title'].'">'; }
+                                ?>
 							</div>
 						</div>
 					</div>
@@ -51,20 +158,157 @@ include('comments.php')
 
 			<div class="w-size14 p-t-30 respon5">
 				<h4 class="product-detail-name m-text16 p-b-13">
-					Painting
+					<?php 
+                                $Pid= $_GET['Q'];
+                                 $proinfo = mysqli_query($db,"SELECT * FROM Products WHERE id='$Pid'");
+                                    
+                                
+                                while($row = $proinfo->fetch_assoc()){
+                                    echo $row['title'];
+                                     }
+                    ?>
+    
 				</h4>
 
 				<span class="m-text17">
-					$22
+					<?php 
+                                $Pid= $_GET['Q'];
+                                 $proinfo = mysqli_query($db,"SELECT * FROM Products WHERE id='$Pid'");
+                                                              
+                                while($row = $proinfo->fetch_assoc()){
+                                    echo $row['price'].'$';
+                                     }
+                    ?>
 				</span>
+ 
+<?php
+                
+   if(isset($_POST['Rate'])){
+    
+$selected_val = (int)$_POST['rating'];  // Storing Selected Value In Variable        
+    
+if(isset($_SESSION['ID'])){
+$userId = $_SESSION['ID'];   
+$Pid= $_GET['Q'];  
+    
+    
+    $sql = "SELECT * FROM product_rating WHERE product='$Pid' AND userID='$userId'";
+    $result = $db->query($sql);  
+    
+    if($result->num_rows == 0){
+    $sql = "INSERT INTO product_rating (product,rating,userID) VALUES ('$Pid','$selected_val','$userId')";
+    $result = $db->query($sql);
+        
+    } else {   
+        $sql ="UPDATE product_rating SET rating='$selected_val' WHERE product='$Pid' AND userID='$userId'";
+        $result = $db->query($sql);       
+    }
+     
+  
+ } 
+    
+    
+}
+                
+                
+function setRate($db,$sum){
+
+$Pid= $_GET['Q'];  
+
+  $sql = "SELECT * FROM Products WHERE id='$Pid'";
+ $result = $db->query($sql);  
+    
+     while($row = mysqli_fetch_assoc($result)){
+         
+        $sql ="UPDATE Products SET rating='$sum' WHERE product='$Pid'";
+
+    }
+    
+     echo "<br>".'Product Rate:'.$sum;
+              
+                
+}
+                
+
+function getRates($db){
+
+    $Pid= $_GET['Q'];  
+    
+    $sql = "SELECT * FROM product_rating WHERE product='$Pid'";
+    $result = $db->query($sql);  
+       
+
+$sum = 0;
+$count = 0;
+
+    
+    while($row = mysqli_fetch_assoc($result)){
+        
+        $sum+= (int)$row['rating'];
+        $count = $count+1;
+
+    }
+    
+    if($count>0){
+    $sum = $sum/$count;
+    }
+    
+    setRate($db,$sum);
+     
+}
+                
+                
+                
+ function YourRate($db){
+  
+ if(isset($_SESSION['ID'])){
+        
+    $id = $_SESSION['ID'];
+   
+     
+    $Pid= $_GET['Q'];  
+
+
+    $sql = "SELECT * FROM product_rating WHERE product='$Pid' AND userID='$id'";
+    $result = $db->query($sql);  
+     
+   while($row = mysqli_fetch_assoc($result)){
+        echo "<br>".'Your Rate:'.$row['rating'];
+    }  
+     
+ }
+    
+}
+             
+                
+    
+   echo "<p>".getRates($db)."</p>";
+   echo "<p>".YourRate($db)."</p>";
+
+   echo "<p>Rate:</p>";
+    
+    echo "<form method='post' action=''>              
+   <select name='rating'>
+   <option value='1'>1</option>
+  <option value='2'>2</option>
+  <option value='3'>3</option>
+  <option value='4'>4</option>
+  <option value='5'>5</option>
+</select> 
+<input type='submit' name='Rate' value='Rate' />
+ </form>";  
+ 
+?>
 
 				<p class="s-text8 p-t-10">
-					Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+					<?php echo $row['description'] ?>
 				</p>
 
 				<!--  -->
 				<div class="p-t-33 p-b-60">
-					<div class="flex-m flex-w p-b-10">
+                    
+                    
+             <div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
 							Size
 						</div>
@@ -94,7 +338,7 @@ include('comments.php')
 				</div>
 
 				<div class="p-b-45">
-					<span class="s-text8">Categories: Paintings, Design</span>
+					<span class="s-text8">Categories: <?php echo $row['description'] ?> </span>
 				</div>
 
                 
@@ -107,7 +351,7 @@ include('comments.php')
    echo "<div class='comment-form'>";
     
     echo "<form method='POST' action='".setComments($db)."'>
-         <input type='hidden' name='userID' value='Anonymous'>
+         <input type='hidden' name='userID' value='".getUserId($db)."'>
          <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
          <textarea name='comment'></textarea><br>
          <button type='submit' name='commentSubmit'>Comment</button>
@@ -118,36 +362,8 @@ include('comments.php')
     echo "</div>";
     
     ?>
-
-   
-  
-<!--
-  <div class="detailBox">
-    <div class="titleBox">
-      <label>Comment Box</label>
-    </div>
-    <div class="actionBox">
-        <ul class="commentList">
-            <li>
-                <div class="commentText">
-                    <p>Name</p>
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span><span><i class="fas fa-flag"></i></span>
-
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline" role="form">
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Your comments" />
-            </div>
-            <div class="form-group">
-                <button class="btn btn-default">Add</button>
-            </div>
-        </form>
-    </div>
-</div>  
--->
     
+   
 
  <!--Footer-->
 <?php include 'includes/footer.php' ?>

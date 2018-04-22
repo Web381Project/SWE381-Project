@@ -1,111 +1,124 @@
 ﻿<?php
 require_once('core/init.php');
+
+session_start();
+if(isset($_SESSION['ID'])==false){
+header('location:Home.php');
+}
+
+if(isset($_POST["logOut"])) {
+
+@session_start();   
+session_destroy();
+    
+}
+
+if(isset($_POST["updateProfile"])) {
+    
+$email=$_POST['email'];
+$name=$_POST['name'];
+       
+    
+if($_POST['name']!='') { 
+$query = "UPDATE Users SET Name = '$name' WHERE ID = '".$_SESSION['ID']."' ";
+if($_POST['email']!='') { 
+$query = "UPDATE Users SET Email = '$email' WHERE ID = '".$_SESSION['ID']."' ";}
+if (mysqli_query($db,$query)) {
+   echo "<script>alert('Updated!!!');
+     window.location.href='Profile.php';</script>";
+}
+ else {
+     echo "<script>alert('Not Updated!!!');
+     window.location.href='Profile.php';</script>";
+ }
+}
+}
+
+
+
 ?>
 
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
-    
-    <!-- BOOTSTRAP STYLE SHEET -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT-AWESOME STYLE SHEET FOR BEAUTIFUL ICONS -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-     <!-- CUSTOM STYLE CSS -->
-    	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>Profile</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <script src="assets/js/bootstrap.js"></script>   
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
     
-    <style type="text/css">
-
-.alert-info{
-    background-color: white;
-    
-}
-</style>
 </head>
 <body>
    
 
-    <!-- NAVBAR CODE END -->
 <header class="pageHeader">
-		<!-- Header desktop -->
-	            <?php include 'includes/navigation.php'; ?>     
+	   <?php include 'includes/navigation.php'; ?>     
 	</header>
+     
+    
+<div style="margin: 10% 0 6% 10%;">
+
+<form method="post" action="Profile.php">
+<fieldset>
+
+<!-- NAME -->
+<div class="form-group">
+  <h3 style="margin-bottom:19px;">Type the information and click update to change your information</h3>
     
     
     
+  <h5>Personal Information:</h5>    
+  <label class="col-md-4 control-label" for="textinput">Member Name:</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="name" type="text" placeholder="<?php echo($_SESSION['Name'])?>" class="form-control input-md">
+  </div>
+</div>
 
-    <div class="container">
-        <section style="padding-bottom: 50px; padding-top: 50px;">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="sculpt.jpg" class="img-rounded img-responsive" />
-                    <br />
-                    <br />
-                    
-                    <br /><br/>
-                </div>
-                <div class="col-md-8">
-                    <div class="alert alert-info" style="border-color: orange">
-                        <h2><font color ="black" > User Info : </font></h2>
-                        <br>
-                        <h4> <font color ="black" > First Name:</font> </h4>
-                        <p>
-                             
-                        </p>
-                        <br>
-                          <h4> <font color ="black" >Last name:</font> </h4>
-                        <p>
-                           
-                        </p>
+<!-- EMAIL -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="email" type="text" placeholder="<?php echo($_SESSION['Email'])?>" class="form-control input-md">
+  </div>
+</div>
 
-                        <br>
-                          <h4> <font color ="black" > First Name:</font> </h4>
-                        <p>
-                          
-                        </p>
+<!-- CREDIT CARDS -->
+<h5>Credit Cards:</h5>    
+   
+    
+<!-- ADDRESS -->
+<h5>Addresses:</h5>    
+    
 
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="updateProfile" class="btn btn-primary">Update</button>
+  </div>
+</div>
 
-
-
-
-                    </div>
-                    
-
-
-                    <div class="form-group col-md-8" >
+</fieldset>
+    
+        <div class="form-group col-md-8" >
                         
-                        <br>
-                        <a href="#" class="btn btn-warning" style="background-color: silver "> Sign Out</a>
-                                                <a href="billing.html" class="btn btn-warning" style="background-color: silver ">Show Order History</a>
+             <br>
+            <button href="billing.html" class="btn btn-warning" style="background-color: silver ">Show Order History</button>
 
-                    </div>
-                </div>
-            </div>
-            <!-- ROW END -->
-
-
-        </section>
-        <!-- SECTION END -->
-    </div>
-    <!-- CONATINER END -->
-
-    <!-- REQUIRED SCRIPTS FILES -->
-    <!-- CORE JQUERY FILE -->
+     </div>  
+  </form>
     
+    <form method="post" action="signout.php">
+    <button id="singlebutton" name="logOut" class="btn btn-primary">Sign out</button>
+
+   </form>
+ 
+</div>
+     
     <?php include 'includes/footer.php' ?>
 
-    
-    <script src="assets/js/jquery-1.11.1.js"></script>
-    <!-- REQUIRED BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.js"></script>
 </body>
 
 </html>
