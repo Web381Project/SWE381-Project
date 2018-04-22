@@ -35,10 +35,7 @@ session_start();
 <!------ Include the above in your HEAD tag ---------->
 
 <?php 
-<<<<<<< HEAD
-=======
 
->>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73
 $user_id =$_SESSION["ID"];
 //$con = mysqli_connect('localhost','root','','Mondo');
 $orders_list ="SELECT * FROM ORDERS WHERE ID='$user_id'";
@@ -107,7 +104,7 @@ while ($row=mysqli_fetch_array($query)) {
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
 <tr class="table-head">
-<td class="column-1" style="padding-left: 450px;"> <?php echo	"No Orders"?></td>
+<td class="column-1" style="padding-left: 530px;"> <?php echo	"No Orders"?></td>
 </tr>
 </table>
 </div>        
