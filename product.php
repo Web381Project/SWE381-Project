@@ -2,21 +2,6 @@
 require_once('core/init.php');
 
 
-//
-//
-// GET RATING
-//
-//
-
-function UpdateProductRating($db){
-    
-    
-    
-}
-
-
-
-
 function getUserId($db){
     
     if(isset($_SESSION['ID'])){
@@ -54,7 +39,14 @@ function setComments($db) {
 
         $sql = "INSERT INTO Comments (ID,date,comment,productID) VALUES ('$userID','$date','$comment','$Pid')";
         $result = $db->query($sql);
+        
+if ($result) {
+   echo "<script>alert('Comment Added')</script>";
+} else {
+     echo "<script>alert('comment not added!')</script>";
+ }
     }
+    
 }
 
 function getComments($db){
@@ -95,6 +87,15 @@ function flagComment($db){
         
         $sql ="UPDATE Comments SET flagged=1 WHERE commentID='$commentID'";
         $result = $db->query($sql);
+        
+ if ($result) {
+   echo "<script>alert('Comment is flagged successfuly')</script>";
+} else {
+     echo "<script>alert('Sorry, somerhing went wrong!')</script>";
+ }
+
+        
+        
     }
 }
 
@@ -175,9 +176,16 @@ function flagComment($db){
                                 $Pid= $_GET['Q'];
                                  $proinfo = mysqli_query($db,"SELECT * FROM Products WHERE id='$Pid'");
                                                               
-                                while($row = $proinfo->fetch_assoc()){
-                                    echo $row['price'].'$';
-                                     }
+                     while($row = $proinfo->fetch_assoc()){
+                                    
+                                                   
+                        if($row["disc"]>0){             
+                            echo '<strike>'. $row["price"].'$'.'</strike>'.($row["price"]-$row["price"]*$row["disc"].'$');
+                        } else {
+                            echo $row["price"].'$';
+                        }                
+                                    
+                     }
                     ?>
 				</span>
  
