@@ -1,5 +1,9 @@
 <?php
 require_once('core/init.php');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73
 ?>
 
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
@@ -158,4 +162,8 @@ require_once('core/init.php');
 
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73

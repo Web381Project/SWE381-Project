@@ -35,6 +35,10 @@ session_start();
 <!------ Include the above in your HEAD tag ---------->
 
 <?php 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73
 $user_id =$_SESSION["ID"];
 //$con = mysqli_connect('localhost','root','','Mondo');
 $orders_list ="SELECT * FROM ORDERS WHERE ID='$user_id'";

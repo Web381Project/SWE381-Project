@@ -33,15 +33,30 @@ session_start();
 
 
 <!------ Include the above in your HEAD tag ---------->
+						<div class="cart bgwhite p-t-70 p-b-100" style="margin-bottom: 0%">
+		<div class="container">
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					<table class="table-shopping-cart">
+<tr class="table-head">
+<td class="column-1" style="padding-left: 440px; text-decoration: underline;"> <?php echo	"Existing Products "?></td>
+</tr>
+</table>
+</div>        
+</div>
+</div>
+       
+
+
 
 <?php 
-if(isset($_GET['orderNo']))
-    $order_No = $_GET['orderNo'];
-<<<<<<< HEAD
-=======
+if($_GET['order']=="SALES")
+$orders_list ="SELECT * FROM Products WHERE SALES>'0' ORDER BY SALES DESC";
+else
+$orders_list ="SELECT * FROM Products WHERE refuned=='ture' ";
 
->>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73
-$orders_list ="SELECT * FROM orderItem WHERE orderNo='$order_No'";
+
 $query = mysqli_query($db,$orders_list);
 if (mysqli_num_rows($query) > 0) {
 while ($row=mysqli_fetch_array($query)) {
@@ -55,8 +70,9 @@ while ($row=mysqli_fetch_array($query)) {
 						<tr class="table-head">
 							<td class="column-1"></td>
 							<th class="column-2">item ID</th>
-							<th class="column-3">quantity</th>
+							<th class="column-4">Sales</th>
 							<th class="column-4">price</th>
+							
 			
 							
 							
@@ -65,15 +81,11 @@ while ($row=mysqli_fetch_array($query)) {
 		<tr class="table-row">
 		<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-								<?php
-								 $IMAGEID=$row["itemID"];
-								 $images ="SELECT image FROM Products WHERE ID='$IMAGEID'";
-								 $TITLES="SELECT title FROM Products WHERE ID='$IMAGEID'"; ?>
-								<img src="'.$images.'"alt="'.$TITLES.'">
+									<img src="images/item-10.jpg" alt="IMG-PRODUCT">
 								</div>
 							</td>
-							<td class="column-2"><?php echo $row["itemID"]; ?></td>
-							<td class="column-3"><?php echo $row["quantity"]; ?></td>
+							<td class="column-2"><?php echo $row["id"]; ?></td>
+							<td class="column-2"><?php echo $row["SALES"]; ?></td>
 							<td class="column-4"><?php echo $row["price"]; ?></td>
 						
 						</tr>
@@ -95,8 +107,27 @@ while ($row=mysqli_fetch_array($query)) {
    
 		<?php
 								}
-							}
-						?>
+							} else { ?>
+							<div class="cart bgwhite p-t-70 p-b-100" style="margin-bottom: 0%">
+		<div class="container">
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					<table class="table-shopping-cart">
+<tr class="table-head">
+<td class="column-1" style="padding-left: 450px;"> <?php echo	"No Products"?></td>
+</tr>
+</table>
+</div>        
+</div>
+</div>
+        
+        	<?php
+								} ?>
+        
+   
+						
+						
 
 
  <!--Footer-->
@@ -105,8 +136,4 @@ while ($row=mysqli_fetch_array($query)) {
 
 
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 06457a3aab9266e33d5366b1634bacdc9d582f73
