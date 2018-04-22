@@ -68,10 +68,7 @@
                                                  <td><textarea cols="15" rows="10" name="pdesc"></textarea></td>
                                              </tr>
 						  
-						                     <tr>
-                                                 <td>Product Size </td>
-                                                 <td><input type="text" name="psize"></td>
-                                             </tr>
+						
 						   
                                              <tr>
                                                  <td colspan="2" align="center"><input type="submit" name="addProduct" value="upload"></td>
@@ -100,14 +97,14 @@ if(isset($_POST["addProduct"])){
   $productName = $_POST['productName']; 
   $price = $_POST['price'];
   $description = $_POST['pdesc'];
-  $size = $_POST['psize'];
+  
   $quantity = $_POST['pqty'];
   $discount = $_POST['pdiscnt'];
   $cat = $_POST['pcategory'];
     
     
 
-    $sql ="INSERT INTO Products(title, price, image, description, size, Quantity, disc, categories) VALUES ('$productName','$price','$target','$description','$size','$quantity','$discount','$cat')";
+    $sql ="INSERT INTO Products(title, price, image, description,  Quantity, disc, categories) VALUES ('$productName','$price','$target','$description','$quantity','$discount','$cat')";
   
 if (mysqli_query($db,$sql)) {
    echo "<script>alert('Added!');
