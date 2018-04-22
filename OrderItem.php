@@ -62,7 +62,7 @@ while ($row=mysqli_fetch_array($query)) {
 		<tr class="table-row">
 		<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="images/item-10.jpg" alt="IMG-PRODUCT">
+									<img src="'. $row["image"].'" alt="'. $row["title"].'">
 								</div>
 							</td>
 							<td class="column-2"><?php echo $row["itemID"]; ?></td>
