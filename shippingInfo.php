@@ -71,7 +71,7 @@ require_once('core/init.php');
             }
 
              $idx = $_SESSION['ID'];
-             $xxx = "SELECT * FROM ShippingAdress WHERE userID=2";
+             $xxx = "SELECT * FROM ShippingAdress WHERE userID=$idx";
         $resultx = mysqli_query($con,$xxx);
 
         if(mysqli_num_rows($resultx)>0){
@@ -98,7 +98,7 @@ require_once('core/init.php');
             }
 
              $idx = $_SESSION['ID'];
-        $result = mysqli_query($con,"SELECT * FROM CreditCard WHERE userID LIKE 2");
+        $result = mysqli_query($con,"SELECT * FROM CreditCard WHERE userID LIKE $idx");
         if(mysqli_num_rows($result)>0){
 
             while($row = $result->fetch_assoc()){
