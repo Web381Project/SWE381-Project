@@ -61,8 +61,17 @@ function printCategories($db){
 
                            <!-------- i linked the register page her---> 
                            
-                           <li style="float: right"><a href="<?php if(isset($_SESSION['ID'])){echo 'Profile.php'; }else{echo 'signin.php'; } ?>"><i class="fas fa-user"></i></a></li>                 
-                           <li style="float: right"><a href="cart.php"><i class="fas fa-shopping-basket"></i></a></li>
+                           <li style="float: right"><a href="<?php if(isset($_SESSION['ID'])){echo 'Profile.php'; }else{echo 'signin.php'; } ?>"><i class="fas fa-user"></i></a></li> 
+            
+            
+                       <?php
+
+                        if(!is_admin()){
+
+                           echo '<li style="float: right"><a href="cart.php"><i class="fas fa-shopping-basket"></i></a></li>';
+                        }
+            
+            ?>
 
                             <li style ="float: right"><div class="topnav">
                           <div class="search-container">

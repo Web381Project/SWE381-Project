@@ -39,7 +39,6 @@ mysqli_select_db($link,"Mondo");
 	  echo"<th>"; echo "Product quantity"; echo"</th>";
 	  echo"<th>"; echo "Product discount"; echo"</th>";
 	  echo"<th>"; echo "Product category"; echo"</th>";
-	  echo"<th>"; echo "Product size"; echo"</th>";
 	  echo"<th>"; echo "Delete"; echo"</th>";
 	  echo"<th>"; echo "Edit"; echo"</th>";
 	  echo"</tr>";
@@ -53,8 +52,16 @@ mysqli_select_db($link,"Mondo");
 	  echo"<td>"; echo $row["price"].'$'; echo"</td>";
 	  echo"<td>"; echo $row["Quantity"]; echo"</td>";
 	  echo"<td>"; echo $row["disc"]; echo"</td>";
-	  echo"<td>"; echo $row["categories"]; echo"</td>";
-	  echo"<td>"; echo $row["size"]; echo"</td>";
+          $idd = $row["categories"];
+         $g="SELECT * FROM Categories WHERE id='$idd'";
+          $res2=mysqli_query($db,$g);    
+          
+       	  while($row2=mysqli_fetch_array($res2)){
+ 
+	  echo"<td>"; echo $row2["category"]; echo"</td>";
+
+          }
+          
 	  echo"<td>"; ?> <a href="delete.php?id=<?php echo$row["id"]; ?>">Delete</a> <?php echo "</td>";
 	  echo"<td>"; ?> <a href="UpdateProduct.php?id=<?php echo $row["id"]; ?>">Edit</a> <?php echo"</td>";
 	  echo"</tr>";

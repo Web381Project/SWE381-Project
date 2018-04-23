@@ -29,7 +29,7 @@ require_once('core/init.php');
 
 	<!-- Cart -->
 	<section class="cart bgwhite p-t-70 p-b-100" style="margin-bottom: 5%">
-		<div class="container">
+		<div style ="margin: 10% 0 10%" class="container">
 			<!-- Cart item -->
 			<div class="container-table-cart pos-relative">
 				<div class="wrap-table-shopping-cart bgwhite">
