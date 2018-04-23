@@ -1,6 +1,6 @@
 <?php
 require_once('core/init.php');
-
+session_start();
 
 //
 //
@@ -10,20 +10,33 @@ require_once('core/init.php');
 //--------------- sara --------
 
 if(isset($_POST["add_to_cart"]))
+
  { if (isset($_SESSION["ID"])){
+ 
+ 
+ 
       if(isset($_SESSION["shopping_cart"]))
       {
            $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
            if(!in_array($_GET["Q"], $item_array_id))
            {
                 $count = count($_SESSION["shopping_cart"]);
+                 $IMAGEID= $_GET["Q"];
+								 $s="SELECT * FROM Products WHERE ID='$IMAGEID'";
+								
+								 $TITLES=mysqli_query($db,$s);
+								 $TITLES = mysqli_fetch_assoc($TITLES);
+								
                 $item_array = array(
                      'item_id'               =>     $_GET["Q"],
                      'item_size'          =>     $_POST["size"],
                      'item_quantity'          =>     $_POST["quantity"],
-                     'item_img'   => $_POST["hidden_img"],
-                     'item_title'   => $_POST["hidden_title"],
-                     'item_price'   => $_POST["hidden_price"]
+                     
+                     
+                     
+                     
+                     'item_title'   => $TITLES["title"],
+                     'item_price'   => $TITLES["price"]
                 );
                 $_SESSION["shopping_cart"][$count] = $item_array;
                 echo '<script>alert("Added successfully")</script>';
@@ -37,21 +50,35 @@ if(isset($_POST["add_to_cart"]))
       }
       else
       {
-           $item_array = array(
-                'item_id'               =>     $_GET["Q"],
-                'item_size'          =>     $_POST["size"],
-                'item_quantity'          =>     $_POST["quantity"],
-                'item_img'   => $_POST["hidden_img"],
-                'item_title'   => $_POST["hidden_title"],
-                'item_price'   => $_POST["hidden_price"]
-           );
+             $IMAGEID= $_GET["Q"];
+								 $s="SELECT * FROM Products WHERE ID='$IMAGEID'";
+								
+								 $TITLES=mysqli_query($db,$s);
+								 $TITLES = mysqli_fetch_assoc($TITLES);
+								
+                $item_array = array(
+                     'item_id'               =>     $_GET["Q"],
+                     'item_size'          =>     $_POST["size"],
+                     'item_quantity'          =>     $_POST["quantity"],
+                     
+                     
+                     
+                     
+                     'item_title'   => $TITLES["title"],
+                     'item_price'   => $TITLES["price"]
+                );
+                
            $_SESSION["shopping_cart"][0] = $item_array;
            echo '<script>alert("Added successfully")</script>';
            // echo '<script>window.location="Home.php"</script>';
       }
-      } else 
-     header('Location: signin.php');
+      
+      }
+      
+      else {
+     header('Location: signin.php');}
  }
+
 
 function UpdateProductRating($db){
     
