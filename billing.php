@@ -35,11 +35,11 @@ session_start();
 <!------ Include the above in your HEAD tag ---------->
 
 <?php 
-$user_id =$_SESSION["ID"];
+$user_id = $_SESSION['ID'];
 //$con = mysqli_connect('localhost','root','','Mondo');
-$orders_list ="SELECT * FROM ORDERS WHERE ID='$user_id'";
+$orders_list ="SELECT * FROM orders WHERE ID='$user_id'";
 $query = mysqli_query($db,$orders_list);
-if (mysqli_num_rows($query) > 0) { ?>
+if ($query && mysqli_num_rows($query) > 0) { ?>
 	<div class="container">
 			<!-- Cart item -->
 					<table class="table-shopping-cart">
@@ -50,8 +50,8 @@ if (mysqli_num_rows($query) > 0) { ?>
 							<th class="column-3">Address</th>
 							<th class="column-4">Status</th>
 							<th class="column-5">Total</th>
-					 <th class="column-6" style="color:white">Reetturnnnn </th>
-					 <th class="column-7" style="color:white">Reettunnn </th>		
+					<th class="column-6" style="color:white">Reetturnnnn </th>
+					<th class="column-7" style="color:white">Reettunnn </th>		
 						</tr>
 				
 					</table>
@@ -74,7 +74,7 @@ while ($row=mysqli_fetch_array($query)) {
 							<td class="column-4"><?php echo $row["status"]; ?></td>
 							<td class="column-5"><?php echo $row["total"]; ?></td>
 								<?php if($row['status']=="Ordered" || $row['status']=="Processed") {?>
-							 <td class="column-6"> <a href="Return.php?orderNo=<?php echo $row['orderNo']; ?> " onclick="return  confirm('Are you sue do you want to return this order?')"><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1"> Return</button> </td> <?php 
+							<td class="column-6"> <a href="Return.php?orderNo=<?php echo $row['orderNo']; ?> " onclick="return  confirm('Are you sue do you want to return this order?')"><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1"> Return</button> </td> <?php 
 							}?>
 							<?php if($row["status"]=='Shipped' || $row["status"]=='Delivered') { ?>
 							<th class="column-6" style="color:white">Reetturnnnn </th><?php 
@@ -95,7 +95,7 @@ while ($row=mysqli_fetch_array($query)) {
     </div>
    
 		<?php }}
-		 else { ?>
+		else { ?>
 							<div class="cart bgwhite p-t-70 p-b-100" style="margin-bottom: 0%">
 		<div class="container">
 			<!-- Cart item -->
@@ -103,7 +103,7 @@ while ($row=mysqli_fetch_array($query)) {
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
 <tr class="table-head">
-<td class="column-1" style="padding-left: 450px;"> <?php echo	"No Orders"?></td>
+<td class="column-1" style="padding-left: 530px;"> <?php echo	"No Orders"?></td>
 </tr>
 </table>
 </div>        
@@ -122,3 +122,4 @@ while ($row=mysqli_fetch_array($query)) {
 
 </body>
 </html>
+

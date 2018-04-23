@@ -50,24 +50,30 @@ while ($row=mysqli_fetch_array($query)) {
 					<table class="table-shopping-cart">
 						<tr class="table-head">
 							<td class="column-1"></td>
-							<th class="column-2">item ID</th>
-							<th class="column-3">quantity</th>
-							<th class="column-4">price</th>
-			
+							<th class="column-2">title</th>
+							<th class="column-3">item ID</th>
+							<th class="column-4">quantity</th>
+			                <th class="column-5">price</th>
 							
 							
 						</tr>
 						
 		<tr class="table-row">
 		<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
+		
+								
 								<?php
 								 $IMAGEID=$row["itemID"];
-								 $images ="SELECT image FROM Products WHERE ID='$IMAGEID'";
-								 $TITLES="SELECT title FROM Products WHERE ID='$IMAGEID'"; ?>
-								<img src="'.$images.'"alt="'.$TITLES.'">
-								</div>
+								 $s="SELECT * FROM Products WHERE ID='$IMAGEID'";
+								
+								 $TITLES=mysqli_query($db,$s);
+								 $TITLES = mysqli_fetch_assoc($TITLES);
+								
+								  ?>
+								
+								
 							</td>
+							<td class="column-2"><?php echo $TITLES["title"].""; ?></td>
 							<td class="column-2"><?php echo $row["itemID"]; ?></td>
 							<td class="column-3"><?php echo $row["quantity"]; ?></td>
 							<td class="column-4"><?php echo $row["price"]; ?></td>
@@ -101,4 +107,7 @@ while ($row=mysqli_fetch_array($query)) {
 
 
 </body>
+
+</html>
+
 </html>

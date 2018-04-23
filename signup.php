@@ -45,6 +45,9 @@ require_once('core/init.php');
 	                            <div class="form-bottom">
 <form role="form" action="signUpX.php" method="post" class="login-form">
 				                    	<div class="form-group">
+                                            <br>
+                                            <p>You will be redirected to this page if you use a username that already exists.</p>
+                                            <h5>kindly try again</h5><br>
                                             <label class="sr-only" for="form-username">Username</label>
                                             <input type="text" name="form-username" placeholder="Username" required>
 				                        </div>

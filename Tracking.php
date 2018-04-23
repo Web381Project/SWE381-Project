@@ -158,4 +158,7 @@ require_once('core/init.php');
 
 
 </body>
+
+</html>
+
 </html>

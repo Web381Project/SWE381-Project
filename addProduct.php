@@ -1,4 +1,6 @@
-<?php require_once('core/init.php'); ?>
+<?php require_once('core/init.php');
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +47,6 @@
                                                          
                         <?php $sql = "SELECT * FROM Categories";
                         $result = $db->query($sql);
-
                             while($row = mysqli_fetch_assoc($result)){
                             echo '<option value="' .$row['id']. '">' .$row['category']. '</option>';
     
@@ -68,10 +69,7 @@
                                                  <td><textarea cols="15" rows="10" name="pdesc"></textarea></td>
                                              </tr>
 						  
-						                     <tr>
-                                                 <td>Product Size </td>
-                                                 <td><input type="text" name="psize"></td>
-                                             </tr>
+						
 						   
                                              <tr>
                                                  <td colspan="2" align="center"><input type="submit" name="addProduct" value="upload"></td>
@@ -83,10 +81,8 @@
 <?php
 if(isset($_POST["addProduct"])){
     
-
   	$image = $_FILES['image']['name'];
   	$target = "product-imgs/".basename($image);
-
   	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
   		echo 'Image uploaded successfully';
   	}else{
@@ -100,14 +96,13 @@ if(isset($_POST["addProduct"])){
   $productName = $_POST['productName']; 
   $price = $_POST['price'];
   $description = $_POST['pdesc'];
-  $size = $_POST['psize'];
+  
   $quantity = $_POST['pqty'];
   $discount = $_POST['pdiscnt'];
   $cat = $_POST['pcategory'];
     
     
-
-    $sql ="INSERT INTO Products(title, price, image, description, size, Quantity, disc, categories) VALUES ('$productName','$price','$target','$description','$size','$quantity','$discount','$cat')";
+    $sql ="INSERT INTO Products(title, price, image, description,  Quantity, disc, categories) VALUES ('$productName','$price','$target','$description','$quantity','$discount','$cat')";
   
 if (mysqli_query($db,$sql)) {
    echo "<script>alert('Added!');
@@ -119,7 +114,7 @@ if (mysqli_query($db,$sql)) {
  } 
 }
 ?>
-                            </div>
+     </div>
     
     
     

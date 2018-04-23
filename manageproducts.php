@@ -26,7 +26,8 @@
 
     
   <div class="form">
-<a href="reportProduct.php"><button>Report of all Existing Products</button></a><br>
+<a href="ViewReport.php"><button>Report of all Existing Products</button></a><br>
+
 <a href="FlaggedComments.php"><button>Flagged Comments</button></a><br>
          
  </div>

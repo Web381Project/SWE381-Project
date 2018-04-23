@@ -1,17 +1,6 @@
 <?php
-require_once('core/init.php');
-
 session_start();
-  // if(!empty($_SESSION["shopping_cart"])){
-  //   $total = 0;
-  //     foreach($_SESSION["shopping_cart"] as $keys => $values)
-  //     {
-        // echo $values["item_name"];
-        // echo $values["item_quantity"];
-      // }
-  // }else {
-  //   echo "string";
-  // }
+require_once('core/init.php');
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +56,7 @@ session_start();
 									<img src="<?php echo $values["item_img"]; ?>" alt="IMG-PRODUCT">
 								</div>
 							</td>
-							<td class="column-2"><?php  echo $values["item_name"]; ?></td>
+							<td class="column-2"><?php  echo $values["item_title"]; ?></td>
 							<td class="column-3">$<?php  echo $values["item_price"]; ?></td>
 							<td class="column-4"><?php echo $values["item_quantity"]; ?></td>
               <?php $multi =  $values["item_quantity"] *  $values["item_price"] ?>

@@ -1,13 +1,94 @@
 <?php
 require_once('core/init.php');
+session_start();
+
+//
+//
+// GET RATING
+//
+//
+//--------------- sara --------
+if(isset($_POST["add_to_cart"]))
+
+ { if (isset($_SESSION["ID"])){
+ 
+ 
+ 
+      if(isset($_SESSION["shopping_cart"]))
+      {
+           $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+           if(!in_array($_GET["Q"], $item_array_id))
+           {
+                $count = count($_SESSION["shopping_cart"]);
+                 $IMAGEID= $_GET["Q"];
+								$s="SELECT * FROM Products WHERE ID='$IMAGEID'";
+								
+								$TITLES=mysqli_query($db,$s);
+								$TITLES = mysqli_fetch_assoc($TITLES);
+								
+                $item_array = array(
+                     'item_id'               =>     $_GET["Q"],
+                     'item_size'          =>     $_POST["size"],
+                     'item_quantity'          =>     $_POST["quantity"],
+                     
+                     
+                     
+                     
+                     'item_title'   => $TITLES["title"],
+                     'item_price'   => $TITLES["price"]
+                );
+                $_SESSION["shopping_cart"][$count] = $item_array;
+                echo '<script>alert("Added successfully")</script>';
+
+           }
+           else
+           {
+                echo '<script>alert("Item Already Added")</script>';
+                // echo '<script>window.location="Home.php"</script>';
+           }
+      }
+      else
+      {
+             $IMAGEID= $_GET["Q"];
+								$s="SELECT * FROM Products WHERE ID='$IMAGEID'";
+								
+								$TITLES=mysqli_query($db,$s);
+								$TITLES = mysqli_fetch_assoc($TITLES);
+								
+                $item_array = array(
+                     'item_id'               =>     $_GET["Q"],
+                     'item_size'          =>     $_POST["size"],
+                     'item_quantity'          =>     $_POST["quantity"],
+                     
+                     
+                     
+                     
+                     'item_title'   => $TITLES["title"],
+                     'item_price'   => $TITLES["price"]
+                );
+                
+           $_SESSION["shopping_cart"][0] = $item_array;
+           echo '<script>alert("Added successfully")</script>';
+           // echo '<script>window.location="Home.php"</script>';
+      }
+      
+      }
+      
+      else {
+     header('Location: signin.php');}
+ }
 
 
+function UpdateProductRating($db){
+    
+    
+    
+}
 function getUserId($db){
     
     if(isset($_SESSION['ID'])){
         
         $id = $_SESSION['ID'];
-
         
     $getUser = "SELECT * FROM Users WHERE ID='$id'";
     $Userresult = $db->query($getUser);  
@@ -15,7 +96,6 @@ function getUserId($db){
         while($row = mysqli_fetch_assoc($Userresult)){
             
             $user = $row['Name'];
-
          }
         return $user;
         
@@ -24,7 +104,6 @@ function getUserId($db){
     }   
     
 }
-
 function setComments($db) {
   
     $Pid= $_GET['Q'];
@@ -36,19 +115,10 @@ function setComments($db) {
         $userID = $_POST['userID'];
         $date = $_POST['date'];
         $comment = $_POST['comment'];
-
         $sql = "INSERT INTO Comments (ID,date,comment,productID) VALUES ('$userID','$date','$comment','$Pid')";
         $result = $db->query($sql);
-        
-if ($result) {
-   echo "<script>alert('Comment Added')</script>";
-} else {
-     echo "<script>alert('comment not added!')</script>";
- }
     }
-    
 }
-
 function getComments($db){
     
     
@@ -62,8 +132,6 @@ function getComments($db){
               echo 'no comments';
   
     } else {
-
-
     while($row = mysqli_fetch_assoc($result)){
         echo "<div class='comment-box'><p>";
         echo $row['ID']."<br>";
@@ -80,26 +148,14 @@ function getComments($db){
     }
     
 }
-
 function flagComment($db){
     if(isset($_POST['commentFlag'])){
         $commentID = $_POST['commentID'];
         
         $sql ="UPDATE Comments SET flagged=1 WHERE commentID='$commentID'";
         $result = $db->query($sql);
-        
- if ($result) {
-   echo "<script>alert('Comment is flagged successfuly')</script>";
-} else {
-     echo "<script>alert('Sorry, somerhing went wrong!')</script>";
- }
-
-        
-        
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -176,16 +232,9 @@ function flagComment($db){
                                 $Pid= $_GET['Q'];
                                  $proinfo = mysqli_query($db,"SELECT * FROM Products WHERE id='$Pid'");
                                                               
-                     while($row = $proinfo->fetch_assoc()){
-                                    
-                                                   
-                        if($row["disc"]>0){             
-                            echo '<strike>'. $row["price"].'$'.'</strike>'.($row["price"]-$row["price"]*$row["disc"].'$');
-                        } else {
-                            echo $row["price"].'$';
-                        }                
-                                    
-                     }
+                                while($row = $proinfo->fetch_assoc()){
+                                    echo $row['price'].'$';
+                                     }
                     ?>
 				</span>
  
@@ -220,16 +269,13 @@ $Pid= $_GET['Q'];
                 
                 
 function setRate($db,$sum){
-
 $Pid= $_GET['Q'];  
-
   $sql = "SELECT * FROM Products WHERE id='$Pid'";
  $result = $db->query($sql);  
     
      while($row = mysqli_fetch_assoc($result)){
          
         $sql ="UPDATE Products SET rating='$sum' WHERE product='$Pid'";
-
     }
     
      echo "<br>".'Product Rate:'.$sum;
@@ -237,24 +283,19 @@ $Pid= $_GET['Q'];
                 
 }
                 
-
 function getRates($db){
-
     $Pid= $_GET['Q'];  
     
     $sql = "SELECT * FROM product_rating WHERE product='$Pid'";
     $result = $db->query($sql);  
        
-
 $sum = 0;
 $count = 0;
-
     
     while($row = mysqli_fetch_assoc($result)){
         
         $sum+= (int)$row['rating'];
         $count = $count+1;
-
     }
     
     if($count>0){
@@ -275,8 +316,6 @@ $count = 0;
    
      
     $Pid= $_GET['Q'];  
-
-
     $sql = "SELECT * FROM product_rating WHERE product='$Pid' AND userID='$id'";
     $result = $db->query($sql);  
      
@@ -291,8 +330,34 @@ $count = 0;
                 
     
    echo "<p>".getRates($db)."</p>";
+                
+    $orderNo = ""; 
+    $flag = 0;
+                
+                
+    $Pid= $_GET['Q'];  
+    $userID=$_SESSION['ID'];
+        
+    $sql = "SELECT * FROM orders WHERE status='Shipped' AND userID='$userID'";
+    $result = $db->query($sql);    
+                
+    while($row && $row = mysqli_fetch_assoc($result)){
+       $orderNo = $row['orderNo'];
+    } 
+                
+    $sql2 = "SELECT * FROM orderitem WHERE orderNo='$orderNo'";
+    $result2 = $db->query($sql2);    
+                
+    while($row2 = mysqli_fetch_assoc($result2)){
+       if($row2['itemID']==$Pid){
+          $flag = 1;
+           break;
+       }
+        
+    }             
+                
+    if ($flag==1) {          
    echo "<p>".YourRate($db)."</p>";
-
    echo "<p>Rate:</p>";
     
     echo "<form method='post' action=''>              
@@ -305,49 +370,87 @@ $count = 0;
 </select> 
 <input type='submit' name='Rate' value='Rate' />
  </form>";  
+        
+    }
  
 ?>
 
 				<p class="s-text8 p-t-10">
-					<?php echo $row['description'] ?>
+					<?php 
+                    
+                    
+                     $Pid= $_GET['Q'];
+                      $proinfo = mysqli_query($db,"SELECT * FROM Products WHERE id='$Pid'");
+                                                              
+                     while($row = $proinfo->fetch_assoc()){
+   
+                    
+                    echo $row['description']; }
+                    
+                    ?>
 				</p>
 
+				
 				<!--  -->
 				<div class="p-t-33 p-b-60">
                     
-                    
-             <div class="flex-m flex-w p-b-10">
+           
+          <form method="post" action="product.php?action=add&Q=<?php echo $_GET['Q']; ?>">
+                       <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
+                            <h3>quantity</h3>
+                            <input type="number" name="quantity" class="form-control" value="1" />
+                            <h3>size</h3>
+                            <select class="selection-2" name="size" style="width:100%;max-width: 300px;">
+                				        <option value="1">30x20</option>
+                                <option value="2">60x80</option>
+                				        <option value="3">200x100</option>
+                				    </select>
+
+                            <br>
+                            <input type="hidden" name="hidden_img" value="<?php echo $productform['image']; ?>">
+                            <input type="hidden" name="hidden_title" value="<?php echo $productform['title']; ?>">
+                            <input type="hidden" name="hidden_price" value="<?php echo $productform['price']; ?>">
+                            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+                       </div>
+          </form>
+
+
+             <!-- <div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
 							Size
-						</div>
-
+            </div>
                 <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
 				    <select class="selection-2" name="size">
-				        <option>Choose an option</option>
-				        <option>30x20</option>
-                        <option>60x80</option>
-				        <option>200x100</option>
+				        <option value="1">30x20</option>
+                <option value="2">60x80</option>
+				        <option value="3">200x100</option>
 				    </select>
 						</div>
-				</div>
+				</div> -->
 
+        <!-- <div class="flex-m flex-w p-b-10">
+             <div class="s-text15 w-size15 t-center">
+               quantity
+             </div>
+                 <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+                   <input type="number" name="quantity" value="1">
+             </div>
+        </div> -->
 
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
 
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
-								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-									Add to Cart
-								</button>
+
+
+                <!-- <input type="submit" name="ActionAdd" value="Add to Cart" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"> -->
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="p-b-45">
-					<span class="s-text8">Categories: <?php echo $row['description'] ?> </span>
+
 				</div>
+				
 
                 
 			</div>
