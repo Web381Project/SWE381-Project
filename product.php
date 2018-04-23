@@ -7,6 +7,51 @@ require_once('core/init.php');
 // GET RATING
 //
 //
+//--------------- sara --------
+
+if(isset($_POST["add_to_cart"]))
+ { if (isset($_SESSION["ID"])){
+      if(isset($_SESSION["shopping_cart"]))
+      {
+           $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+           if(!in_array($_GET["Q"], $item_array_id))
+           {
+                $count = count($_SESSION["shopping_cart"]);
+                $item_array = array(
+                     'item_id'               =>     $_GET["Q"],
+                     'item_size'          =>     $_POST["size"],
+                     'item_quantity'          =>     $_POST["quantity"],
+                     'item_img'   => $_POST["hidden_img"],
+                     'item_title'   => $_POST["hidden_title"],
+                     'item_price'   => $_POST["hidden_price"]
+                );
+                $_SESSION["shopping_cart"][$count] = $item_array;
+                echo '<script>alert("Added successfully")</script>';
+
+           }
+           else
+           {
+                echo '<script>alert("Item Already Added")</script>';
+                // echo '<script>window.location="Home.php"</script>';
+           }
+      }
+      else
+      {
+           $item_array = array(
+                'item_id'               =>     $_GET["Q"],
+                'item_size'          =>     $_POST["size"],
+                'item_quantity'          =>     $_POST["quantity"],
+                'item_img'   => $_POST["hidden_img"],
+                'item_title'   => $_POST["hidden_title"],
+                'item_price'   => $_POST["hidden_price"]
+           );
+           $_SESSION["shopping_cart"][0] = $item_array;
+           echo '<script>alert("Added successfully")</script>';
+           // echo '<script>window.location="Home.php"</script>';
+      }
+      } else 
+     header('Location: signin.php');
+ }
 
 function UpdateProductRating($db){
     
@@ -304,39 +349,71 @@ $count = 0;
 					<?php echo $row['description'] ?>
 				</p>
 
+				
 				<!--  -->
 				<div class="p-t-33 p-b-60">
                     
-                    
-             <div class="flex-m flex-w p-b-10">
+           
+          <form method="post" action="product.php?action=add&Q=<?php echo $_GET['Q']; ?>">
+                       <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
+                            <h3>quantity</h3>
+                            <input type="number" name="quantity" class="form-control" value="1" />
+                            <h3>size</h3>
+                            <select class="selection-2" name="size" style="width:100%;max-width: 300px;">
+                				        <option value="1">30x20</option>
+                                <option value="2">60x80</option>
+                				        <option value="3">200x100</option>
+                				    </select>
+
+                            <br>
+                            <input type="hidden" name="hidden_img" value="<?php echo $productform['image']; ?>">
+                            <input type="hidden" name="hidden_title" value="<?php echo $productform['title']; ?>">
+                            <input type="hidden" name="hidden_price" value="<?php echo $productform['price']; ?>">
+                            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+                       </div>
+          </form>
+
+
+             <!-- <div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
 							Size
-						</div>
+            </div>
 
                 <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
 				    <select class="selection-2" name="size">
-				        <option>Choose an option</option>
-				        <option>30x20</option>
-                        <option>60x80</option>
-				        <option>200x100</option>
+				        <option value="1">30x20</option>
+                <option value="2">60x80</option>
+				        <option value="3">200x100</option>
 				    </select>
-						</div>
-				</div>
 
+						</div>
+				</div> -->
+
+        <!-- <div class="flex-m flex-w p-b-10">
+             <div class="s-text15 w-size15 t-center">
+               quantity
+             </div>
+
+                 <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+                   <input type="number" name="quantity" value="1">
+
+             </div>
+        </div> -->
 
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
 
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
-								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-									Add to Cart
-								</button>
+
+
+                <!-- <input type="submit" name="ActionAdd" value="Add to Cart" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4"> -->
 							</div>
 						</div>
 					</div>
-				</div>
 
+
+				</div>
+				
 				<div class="p-b-45">
 					<span class="s-text8">Categories: <?php echo $row['description'] ?> </span>
 				</div>
